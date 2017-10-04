@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is training project for training docker with some focus
 
-Things you may want to cover:
+Things I may want to cover:
 
-* Ruby version
+* Docker
 
-* System dependencies
+* docker-compose
 
-* Configuration
+* Rails 5 API 
 
-* Database creation
+* Kubernetes
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+* Google Container Engine
 
 * ...

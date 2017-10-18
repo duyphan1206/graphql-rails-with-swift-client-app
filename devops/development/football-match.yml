@@ -1,0 +1,64 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: footballmatch
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: footballmatch
+        tier: backend
+        track: stable
+    spec:
+      containers:
+        - name: footballmatch
+          image: asia.gcr.io/dprails5ondocker/footballmatch:1.1.0
+          ports:
+            - name: rails
+              containerPort: 3000
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: football-match-config
+                  key: postgres_user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: football-match-config
+                  key: postgres_password
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: football-match-config
+                  key: postgres_host
+            - name: RAILS_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: football-match-config
+                  key: rails_env
+            - name: RAILS_LOG_TO_STDOUT
+              valueFrom:
+                configMapKeyRef:
+                  name: football-match-config
+                  key: rails_log_to_stdout
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                configMapKeyRef:
+                  name: football-match-config
+                  key: secret_key_base
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: footballmatch
+spec:
+  selector:
+    app: footballmatch
+    tier: backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: rails
+  type: LoadBalancer

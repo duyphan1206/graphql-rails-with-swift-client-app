@@ -4,7 +4,7 @@ metadata:
   name: frontend
   project: footballmatch
   tier: frontend
-  environment: development
+  environment: production
 spec:
   ports:
     - protocol: TCP
@@ -21,7 +21,7 @@ metadata:
   name: frontend
   project: footballmatch
   tier: frontend
-  environment: development
+  environment: production
 spec:
   template:
     metadata:

@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  namespace: footballmatch-development
+  namespace: footballmatch-production
   name: footballmatch
 spec:
   replicas: 1
@@ -11,7 +11,7 @@ spec:
         app: footballmatch
         tier: backend
         track: stable
-        environment: development
+        environment: production
     spec:
       containers:
         - name: footballmatch
@@ -57,7 +57,7 @@ metadata:
   name: footballmatch
   project: footballmatch
   tier: backend
-  environment: development
+  environment: production
 spec:
   selector:
     app: footballmatch

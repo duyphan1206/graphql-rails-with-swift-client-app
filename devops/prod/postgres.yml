@@ -1,25 +1,10 @@
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  namespace: footballmatch-development
-  name: postgres-data-claim
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 100M
-  selector:
-    matchLabels:
-      name: postgres-data
----
 apiVersion: v1
 kind: Service
 metadata:
   name: postgres
   project: footballmatch
   tier: database
-  environment: development
+  environment: production
 spec:
   ports:
     - port: 5432
@@ -27,26 +12,17 @@ spec:
     app: postgres
     project: footballmatch
     tier: database
-    environment: development
+    environment: production
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  namespace: footballmatch-development
   name: postgres
-  labels:
-    name: postgres
-    project: footballmatch
-    environment: development
 spec:
-  replicas: 1
   template:
     metadata:
       labels:
         app: postgres
-        project: footballmatch
-        tier: database
-        environment: development
     spec:
       containers:
         - image: "postgres:9.6.2"
@@ -55,17 +31,17 @@ spec:
             - name: POSTGRES_USER
               valueFrom:
                 configMapKeyRef:
-                  name: env
+                  name: football-match-config
                   key: postgres_user
             - name: POSTGRES_PASSWORD
               valueFrom:
                 configMapKeyRef:
-                  name: env
+                  name: football-match-config
                   key: postgres_password
             - name: PGDATA
               valueFrom:
                 configMapKeyRef:
-                  name: env
+                  name: football-match-config
                   key: pgdata
           ports:
             - containerPort: 5432
@@ -75,5 +51,6 @@ spec:
               mountPath: /var/lib/postgresql/data
       volumes:
         - name: postgres-storage
-          persistentVolumeClaim:
-            claimName: postgres-data-claim
+          gcePersistentDisk:
+            fsType: ext4
+            pdName: postgres-disk

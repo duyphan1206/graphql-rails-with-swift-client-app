@@ -57,7 +57,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: footballmatch-production
   name: footballmatch
+  labels:
+    name: footballmatch
+    project: footballmatch
+    environment: production
 spec:
   selector:
     app: footballmatch

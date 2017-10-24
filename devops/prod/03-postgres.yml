@@ -1,7 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: footballmatch-production
   name: postgres
+  labels:
+    name: postgres
+    project: footballmatch
+    environment: production
 spec:
   ports:
     - port: 5432

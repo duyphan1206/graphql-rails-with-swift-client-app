@@ -6,4 +6,4 @@ metadata:
   labels:
     project: footballmatch
     environment: development
-    provider: minikube
+    provider: gcp

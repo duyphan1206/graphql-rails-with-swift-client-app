@@ -1,24 +1,24 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  namespace: footballmatch-production
-  name: footballmatch
+  namespace: todos-api-production
+  name: todos-api
   labels:
-    name: footballmatch
-    project: footballmatch
+    name: backend
+    project: todos-api
     environment: production
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: footballmatch
+        app: todos-api
         tier: backend
         track: stable
     spec:
       containers:
-        - name: footballmatch
-          image: asia.gcr.io/dprails5ondocker/footballmatch:1.1.1
+        - name: todos-api
+          image: asia.gcr.io/dprails5ondocker/todos-app:v1.0.1
           ports:
             - name: rails
               containerPort: 3000
@@ -26,46 +26,46 @@ spec:
             - name: POSTGRES_USER
               valueFrom:
                 configMapKeyRef:
-                  name: football-match-config
+                  name: todos-api-config
                   key: postgres_user
             - name: POSTGRES_PASSWORD
               valueFrom:
                 configMapKeyRef:
-                  name: football-match-config
+                  name: todos-api-config
                   key: postgres_password
             - name: POSTGRES_HOST
               valueFrom:
                 configMapKeyRef:
-                  name: football-match-config
+                  name: todos-api-config
                   key: postgres_host
             - name: RAILS_ENV
               valueFrom:
                 configMapKeyRef:
-                  name: football-match-config
+                  name: todos-api-config
                   key: rails_env
             - name: RAILS_LOG_TO_STDOUT
               valueFrom:
                 configMapKeyRef:
-                  name: football-match-config
+                  name: todos-api-config
                   key: rails_log_to_stdout
             - name: SECRET_KEY_BASE
               valueFrom:
                 configMapKeyRef:
-                  name: football-match-config
+                  name: todos-api-config
                   key: secret_key_base
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: footballmatch-production
-  name: footballmatch
+  namespace: todos-api-production
+  name: todos-api
   labels:
-    name: footballmatch
-    project: footballmatch
+    name: todos-api
+    project: todos-api
     environment: production
 spec:
   selector:
-    app: footballmatch
+    app: todos-api
     tier: backend
   ports:
     - protocol: TCP

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  namespace: todos-api-production
+  name: todos-api-production
+  labels:
+    project: todos-api
+    environment: production
+    provider: gcp

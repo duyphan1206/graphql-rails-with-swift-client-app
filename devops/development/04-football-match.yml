@@ -3,6 +3,10 @@ kind: Deployment
 metadata:
   namespace: footballmatch-development
   name: footballmatch
+  labels:
+    name: footballmatch
+    project: footballmatch
+    environment: development
 spec:
   replicas: 1
   template:
@@ -11,7 +15,6 @@ spec:
         app: footballmatch
         tier: backend
         track: stable
-        environment: development
     spec:
       containers:
         - name: footballmatch
@@ -23,41 +26,43 @@ spec:
             - name: POSTGRES_USER
               valueFrom:
                 configMapKeyRef:
-                  name: env
+                  name: football-match-config
                   key: postgres_user
             - name: POSTGRES_PASSWORD
               valueFrom:
                 configMapKeyRef:
-                  name: env
+                  name: football-match-config
                   key: postgres_password
             - name: POSTGRES_HOST
               valueFrom:
                 configMapKeyRef:
-                  name: env
+                  name: football-match-config
                   key: postgres_host
             - name: RAILS_ENV
               valueFrom:
                 configMapKeyRef:
-                  name: env
+                  name: football-match-config
                   key: rails_env
             - name: RAILS_LOG_TO_STDOUT
               valueFrom:
                 configMapKeyRef:
-                  name: env
+                  name: football-match-config
                   key: rails_log_to_stdout
             - name: SECRET_KEY_BASE
               valueFrom:
                 configMapKeyRef:
-                  name: env
+                  name: football-match-config
                   key: secret_key_base
 ---
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: footballmatch-development
   name: footballmatch
-  project: footballmatch
-  tier: backend
-  environment: development
+  labels:
+    name: footballmatch
+    project: footballmatch
+    environment: development
 spec:
   selector:
     app: footballmatch

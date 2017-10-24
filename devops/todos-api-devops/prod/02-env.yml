@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: football-match-config
+  name: todos-api-config
 data:
   postgres_user: football_match_planner
   postgres_password: password
@@ -9,4 +9,4 @@ data:
   postgres_host: postgres
   rails_env: production
   rails_log_to_stdout: 'true'
-  secret_key_base: 17399693a13e7d0925803edbb642ee176765a802eaef06621030661fc2d24f731e96dffe70b71b1b853744cf43aecdfcaa925820ecbbbbf1db538302cc14272a
+  secret_key_base: ace9bdad8f2840290e3ad54aa41b99df6a3e18fa957ed48c7b64b9eb5014270da606eb92b87979069c2b86d09ea5ad67146f719b269388b5b3808051af2bc873

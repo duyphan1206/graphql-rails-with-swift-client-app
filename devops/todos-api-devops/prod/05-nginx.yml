@@ -1,40 +1,40 @@
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: footballmatch-development
-  name: frontend
+  namespace: todos-api-production
+  name: nginx
   labels:
-    name: frontend
-    project: footballmatch
-    environment: development
+    name: nginx
+    project: todos-api
+    environment: production
 spec:
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
   selector:
-    app: footballmatch
-    tier: frontend
+    app: todos-api
+    tier: nginx
   type: LoadBalancer
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  namespace: footballmatch-development
-  name: frontend
+  namespace: todos-api-production
+  name: nginx
   labels:
-    name: frontend
-    project: footballmatch
-    environment: development
+    name: nginx
+    project: todos-api
+    environment: production
 spec:
   template:
     metadata:
       labels:
-        app: footballmatch
-        tier: frontend
+        app: todos-api
+        tier: nginx
     spec:
       containers:
-        - image: asia.gcr.io/dprails5ondocker/footballmatch-frontend:1.0.0
+        - image: asia.gcr.io/dprails5ondocker/todos-app-nginx:1.0.1
           name: nginx
           lifecycle:
             preStop:

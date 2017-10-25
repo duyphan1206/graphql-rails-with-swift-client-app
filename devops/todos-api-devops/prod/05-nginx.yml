@@ -5,7 +5,7 @@ metadata:
   name: nginx
   labels:
     name: nginx
-    project: todos-api
+    project: todosapi
     environment: production
 spec:
   ports:
@@ -13,7 +13,7 @@ spec:
       port: 80
       targetPort: 80
   selector:
-    app: todos-api
+    app: todosapi
     tier: nginx
   type: LoadBalancer
 ---
@@ -24,17 +24,17 @@ metadata:
   name: nginx
   labels:
     name: nginx
-    project: todos-api
+    project: todosapi
     environment: production
 spec:
   template:
     metadata:
       labels:
-        app: todos-api
+        app: todosapi
         tier: nginx
     spec:
       containers:
-        - image: asia.gcr.io/dprails5ondocker/todos-app-nginx:1.0.1
+        - image: asia.gcr.io/dprails5ondocker/nginx:1.0.0
           name: nginx
           lifecycle:
             preStop:

@@ -5,7 +5,7 @@ metadata:
   name: postgres
   labels:
     name: postgres
-    project: todos-api
+    project: todosapi
     environment: production
 spec:
   ports:
@@ -20,7 +20,7 @@ metadata:
   name: postgres
   labels:
     name: postgres
-    project: todos-api
+    project: todosapi
     environment: production
 spec:
   template:

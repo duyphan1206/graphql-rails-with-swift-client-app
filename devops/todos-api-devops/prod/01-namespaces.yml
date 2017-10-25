@@ -4,6 +4,6 @@ metadata:
   namespace: todos-api-production
   name: todos-api-production
   labels:
-    project: todos-api
+    project: todosapi
     environment: production
     provider: gcp

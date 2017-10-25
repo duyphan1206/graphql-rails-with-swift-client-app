@@ -2,23 +2,23 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   namespace: todos-api-production
-  name: todos-api
+  name: todosapi
   labels:
     name: backend
-    project: todos-api
+    project: todosapi
     environment: production
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: todos-api
+        app: todosapi
         tier: backend
         track: stable
     spec:
       containers:
-        - name: todos-api
-          image: asia.gcr.io/dprails5ondocker/todos-app:v1.0.1
+        - name: todosapi
+          image: asia.gcr.io/dprails5ondocker/todos-app:1.1.0
           ports:
             - name: rails
               containerPort: 3000
@@ -58,14 +58,14 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: todos-api-production
-  name: todos-api
+  name: todosapi
   labels:
-    name: todos-api
-    project: todos-api
+    name: todosapi
+    project: todosapi
     environment: production
 spec:
   selector:
-    app: todos-api
+    app: todosapi
     tier: backend
   ports:
     - protocol: TCP

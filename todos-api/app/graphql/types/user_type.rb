@@ -5,4 +5,5 @@ Types::UserType = GraphQL::ObjectType.define do
   field :id, !types.Int
   field :emailAddress, !types.String, property: :email
   field :name, !types.String
+  field :comments, types[Types::CommentType]
 end

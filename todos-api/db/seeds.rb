@@ -5,7 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-100.times do
-    todo = Todo.create(title: Faker::Lorem.word, created_by: User.first.id)
-    todo.items.create(name: Faker::Lorem.word, done: false)
-end
+# 100.times do
+#     todo = Todo.create(title: Faker::Lorem.word, created_by: User.first.id)
+#     todo.items.create(name: Faker::Lorem.word, done: false)
+# end
+
+
+5.times { 
+    user = User.first
+    user.comments.create(body: Faker::Lorem.paragraph, user_id: user.id) 
+}

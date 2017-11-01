@@ -18,7 +18,8 @@ spec:
     spec:
       containers:
         - name: todosapi
-          image: asia.gcr.io/dprails5ondocker/todos-app:1.1.0
+          image: asia.gcr.io/dprails5ondocker/todos-app:2.1.0
+          imagePullPolicy: Always
           ports:
             - name: rails
               containerPort: 3000

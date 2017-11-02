@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  namespace: footballmatch-development
-  name: footballmatch-development
-  labels:
-    project: footballmatch
-    environment: development
-    provider: gcp
